@@ -1,12 +1,9 @@
-'use strict';
-let webpackMerge = require( 'webpack-merge' );
+function buildConfig( nodeEnv ) {
+    const options = {
+        nodeEnv: nodeEnv,
+        publicPath: ''
+    };
+    return require( `./config/webpack.${nodeEnv}.js` )( options )
+}
 
-let commonConfig = require( './config/webpack.common.js' );
-let devConfig = require( './config/webpack.dev.js' );
-let devServer = require( './config/webpack.dev-server.js' );
-
-module.exports = webpackMerge(
-    commonConfig,
-    devConfig,
-    { devServer: devServer }
-);
+module.exports = buildConfig;

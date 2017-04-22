@@ -1,13 +1,15 @@
 const path = require( 'path' );
+const webpack = require( 'webpack' );
+const webpackMerge = require( 'webpack-merge' );
+const commonConfig = require( './webpack.common.js' );
 
 module.exports = function( options ) {
-    return {
+    return webpackMerge( commonConfig(), {
         output: {
-            path: path.resolve( __dirname, '../dist' ),
-            filename: '[name].bundle.js',
+            filename: '[name].[chunkhash].js',
             publicPath: options[ 'publicPath' ],
-            sourceMapFilename: '[name].map'
         },
+
         plugins: [
             new webpack.optimize.CommonsChunkPlugin( {
                 /**
@@ -19,6 +21,7 @@ module.exports = function( options ) {
                     return module.context && module.context.indexOf( 'node_modules' ) !== -1;
                 }
             } ),
+
             new webpack.optimize.CommonsChunkPlugin( {
                 /**
                  * CommonChunksPlugin will now extract all the common modules
@@ -27,23 +30,18 @@ module.exports = function( options ) {
                  * runtime code included in the manifest file.
                  */
                 name: 'manifest'
-            } )
-            // ,
+            } ),
+
+            // This Plugin is needed for backwards compatibility with certain old(er) loaders
             // new webpack.LoaderOptionsPlugin( {
             //     minimize: true,
             //     debug: false
             // } ),
-            // new webpack.optimize.UglifyJsPlugin( {
-            //     beautify: false,
-            //     mangle: {
-            //         screw_ie8: true,
-            //         keep_fnames: true
-            //     },
-            //     compress: {
-            //         screw_ie8: true
-            //     },
-            //     comments: false
-            // } )
+
+            new webpack.optimize.UglifyJsPlugin( {
+                mangle: false,
+                comments: false
+            } )
         ]
-    }
+    } );
 };

@@ -5,6 +5,7 @@ const devConfig = require( './webpack.development' );
 
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), devConfig( options ), {
+    // let config = webpackMerge( commonConfig( options ), devConfig( options ), {
         entry: [
             'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8080',
@@ -13,9 +14,13 @@ module.exports = function( options ) {
         ],
 
         module: {
+            /**
+             * Load styles directly into the DOM when running the dev server.
+             * "ExtractTextPlugin" doesn't get along with HMR.
+             */
             rules: [ {
-                test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             } ]
         },
 
@@ -45,4 +50,6 @@ module.exports = function( options ) {
             new webpack.NamedModulesPlugin(),
         ]
     } );
+    // console.log( JSON.stringify( config.module.rules, null, 2 ) );
+    // return config;
 };

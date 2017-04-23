@@ -12,6 +12,13 @@ module.exports = function( options ) {
             './src/index.jsx'
         ],
 
+        module: {
+            rules: [ {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            } ]
+        },
+
         devServer: {
             hot: true,
             contentBase: options.outputPath,

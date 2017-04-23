@@ -7,6 +7,7 @@ My "Awesome App" starter kit for Webpack 2 and React.
 1. React HMR appears to work without using the [`AppContainer`][3] component.
 2. CSS preprocessing, such as Sass
 3. Extracting included CSS with the [Extract Text plugin][4]
+4. Tree-shaking in Babel
 
 [3]: https://webpack.js.org/guides/hmr-react/#app-code
 [4]: https://webpack.js.org/guides/code-splitting-css/#using-extracttextwebpackplugin

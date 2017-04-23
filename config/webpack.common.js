@@ -1,5 +1,11 @@
+const ExtractTextPlugin = require( "extract-text-webpack-plugin" );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const path = require( 'path' );
+
+const extractSass = new ExtractTextPlugin( {
+    filename: "[name].[contenthash].css",
+    // disable: process.env.NODE_ENV === "development"
+} );
 
 module.exports = function( options ) {
     return {
@@ -13,6 +19,15 @@ module.exports = function( options ) {
 
         module: {
             rules: [
+                {
+                    test: /\.scss$/,
+                    use: extractSass.extract( {
+                        use: [
+                            { loader: "css-loader" },
+                            { loader: "sass-loader" }
+                        ]
+                    } )
+                },
                 {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
@@ -31,7 +46,8 @@ module.exports = function( options ) {
         plugins: [
             new HtmlWebpackPlugin( {
                 template: './src/index.html'
-            } )
+            } ),
+            extractSass
         ]
     };
 };

@@ -1,6 +1,6 @@
 {
   "name": "phils-awesome-app",
-  "version": "1.1.0-alpha.0",
+  "version": "1.1.0",
   "description": "Phil's \"Awesome App\" starter kit for Webpack and React",
   "main": "./src/index.js",
   "author": "Phil Gates-Shannon <phil.gs@gmail.com>",

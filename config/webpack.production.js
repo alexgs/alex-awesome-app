@@ -1,12 +1,17 @@
-const path = require( 'path' );
 const webpack = require( 'webpack' );
+const ManifestPlugin = require( 'webpack-manifest-plugin' );
 const webpackMerge = require( 'webpack-merge' );
 const commonConfig = require( './webpack.common.js' );
 
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), {
+        // Don't attempt to continue if there are any errors.
+        bail: true,
+
+        devtool: 'source-map',
+
         output: {
-            filename: '[name].[chunkhash].js',
+            filename: '[name].[hash:8].js',
             publicPath: options[ 'publicPath' ],
         },
 
@@ -32,16 +37,25 @@ module.exports = function( options ) {
                 name: 'manifest'
             } ),
 
-            // This Plugin is needed for backwards compatibility with certain old(er) loaders
-            // new webpack.LoaderOptionsPlugin( {
-            //     minimize: true,
-            //     debug: false
-            // } ),
-
             new webpack.optimize.UglifyJsPlugin( {
-                mangle: false,
-                comments: false
-            } )
+                // Options copied from "Create React App"
+                compress: {
+                    warnings: false,
+                    comparisons: false,             // Disabled because of an issue with Uglify breaking seemingly valid code <https://github.com/facebookincubator/create-react-app/issues/2376>
+                },
+                mangle: {
+                    safari10: true,
+                },
+                output: {
+                    comments: false,
+                    ascii_only: true,               // Turned on because emoji and regex is not minified properly using default <https://github.com/facebookincubator/create-react-app/issues/2488>
+                },
+                sourceMap: false,
+            } ),
+
+            new ManifestPlugin({
+                fileName: 'asset-manifest.json',
+            })
         ]
     } );
 };

@@ -1,6 +1,7 @@
 const webpackMerge = require( 'webpack-merge' );
 const commonConfig = require( './webpack.common.js' );
 const devConfig = require( './webpack.development' );
+const sassLoaders = require( './sass-loaders' );
 
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), devConfig( options ), {
@@ -18,6 +19,10 @@ module.exports = function( options ) {
             rules: [ {
                 test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+                // test: [ /\.sass$/, /\.scss$/ ],
+                // use: [ {
+                //     loader: require.resolve( 'style-loader' )
+                // } ].concat( sassLoaders )
             } ]
         },
 

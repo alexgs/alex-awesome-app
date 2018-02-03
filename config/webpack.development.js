@@ -7,7 +7,7 @@ module.exports = function( options ) {
         devtool: 'cheap-module-source-map',         // Required for the React Dev Utils overlay
 
         output: {
-            filename: '[name].bundle.js',
+            filename: '[name].[hash:8].js',
             pathinfo: true,
             publicPath: options[ 'publicPath' ],
             devtoolModuleFilenameTemplate: info =>

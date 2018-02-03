@@ -7,7 +7,8 @@ function buildConfig() {
         extractCss: !devServer,
         nodeEnv: process.env[ 'NODE_ENV' ],
         outputPath: path.resolve( __dirname, './build' ),
-        publicPath: ''
+        publicPath: '',
+        rootPath: path.resolve( __dirname )
     };
     return require( `./config/webpack.${configFile}.js` )( options );
 }

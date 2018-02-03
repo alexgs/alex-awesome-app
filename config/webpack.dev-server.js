@@ -5,7 +5,6 @@ const devConfig = require( './webpack.development' );
 
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), devConfig( options ), {
-    // let config = webpackMerge( commonConfig( options ), devConfig( options ), {
         entry: [
             'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8080',
@@ -25,22 +24,20 @@ module.exports = function( options ) {
         },
 
         devServer: {
-            hot: true,
+            // clientLogLevel: 'warning',
             contentBase: options.outputPath,
-            publicPath: options.publicPath
+            hot: true,
+            publicPath: options.publicPath,
+            stats: {
+                children: false,
+                chunks: true,
+                chunkModules: false,
+                chunkOrigins: false,
+                modules: false,
+                timings: true,
+                version: true
+            }
         },
-
-        // devServer: {
-        //     colors: true,
-        //     contentBase: './dist',
-        //     historyApiFallback: true,
-        //     host: 'localhost',
-        //     hot: true,
-        //     inline: true,
-        //     keepAlive: true,
-        //     port: 8080,
-        //     stats: 'normal'
-        // }
 
         plugins: [
             // Enable HMR globally
@@ -50,6 +47,4 @@ module.exports = function( options ) {
             new webpack.NamedModulesPlugin(),
         ]
     } );
-    // console.log( JSON.stringify( config.module.rules, null, 2 ) );
-    // return config;
 };

@@ -9,9 +9,10 @@
     "url": "https://github.com/philgs/phils-awesome-app.git"
   },
   "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server --colors",
+    "build": "npm run build:prod",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --colors",
-    "build:prod": "cross-env NODE_ENV=production webpack --progress --colors",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --colors"
+    "build:prod": "cross-env NODE_ENV=production webpack --progress --colors"
   },
   "license": "MIT",
   "private": true,
@@ -31,8 +32,7 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.20.0",
-    "uglify-js": "github:mishoo/UglifyJS2#harmony",
-    "webpack": "^2.4.1",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.4.3",
     "webpack-merge": "^4.1.0"
   }

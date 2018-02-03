@@ -52,6 +52,17 @@ module.exports = function( options ) {
             new ExtractTextPlugin( {
                 filename: "[name].[contenthash].css",
             } )
-        ]
+        ],
+
+        stats: {
+            children: false,
+            chunks: true,
+            chunkModules: false,
+            chunkOrigins: false,
+            modules: false,
+            timings: true,
+            version: true
+        }
+
     };
 };

@@ -32,9 +32,6 @@ module.exports = function( options ) {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
                     loader: 'babel-loader'
-                    , query: {              // TODO Move Babel config into `package.json`; use cache (see CRA)
-                        presets: [ 'react' ]
-                    }
                 }
             ]
         },

@@ -16,9 +16,19 @@
   },
   "babel": {
     "presets": [
-      "react"
+      "env",
+      "react",
+      "stage-3"
     ]
   },
+  "browserlist": [
+    "last 4 chrome versions",
+    "last 4 chromeandroid versions",
+    "last 4 edge versions",
+    "last 4 firefox versions",
+    "last 4 ios versions",
+    "last 4 safari versions"
+  ],
   "license": "MIT",
   "private": true,
   "devDependencies": {

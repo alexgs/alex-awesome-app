@@ -1,4 +1,3 @@
-const webpack = require( 'webpack' );
 const webpackMerge = require( 'webpack-merge' );
 const commonConfig = require( './webpack.common.js' );
 const devConfig = require( './webpack.development' );
@@ -6,13 +5,12 @@ const devConfig = require( './webpack.development' );
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), devConfig( options ), {
         entry: [
-            'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:8080',
-            'webpack/hot/only-dev-server',
+            require.resolve( 'react-dev-utils/webpackHotDevClient' ),
             './src/index.js'
         ],
 
         module: {
+            // TODO Can this be simplified?
             /**
              * Load styles directly into the DOM when running the dev server.
              * "ExtractTextPlugin" doesn't get along with HMR.
@@ -26,7 +24,7 @@ module.exports = function( options ) {
         devServer: {
             // clientLogLevel: 'warning',
             contentBase: options.outputPath,
-            hot: true,
+            hot: false,
             publicPath: options.publicPath,
             stats: {
                 children: false,
@@ -41,10 +39,10 @@ module.exports = function( options ) {
 
         plugins: [
             // Enable HMR globally
-            new webpack.HotModuleReplacementPlugin(),
+            // new webpack.HotModuleReplacementPlugin(),
 
             // Print more readable module names in the browser console on HMR updates
-            new webpack.NamedModulesPlugin(),
+            // new webpack.NamedModulesPlugin(),
         ]
     } );
 };

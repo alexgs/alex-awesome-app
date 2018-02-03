@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './stylesheets/app.scss';
 
-class AwesomeApp extends Component {
+class App extends React.PureComponent {
     render() {
         return (
             <div>
@@ -13,4 +13,4 @@ class AwesomeApp extends Component {
     }
 }
 
-export default AwesomeApp;
+export default App;

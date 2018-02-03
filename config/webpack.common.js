@@ -1,6 +1,5 @@
 const ExtractTextPlugin = require( "extract-text-webpack-plugin" );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const path = require( 'path' );
 
 module.exports = function( options ) {
     return {
@@ -19,7 +18,7 @@ module.exports = function( options ) {
                  * `disable` option doesn't appear to work. I came up with this configuration
                  * as a work-around.
                  */
-                options.extractCss ? {
+                options.extractCss ? {      // TODO Can this be simplified?
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract( {
                         use: [
@@ -32,8 +31,8 @@ module.exports = function( options ) {
                 {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
-                    loader: 'babel-loader',
-                    query: {
+                    loader: 'babel-loader'
+                    , query: {              // TODO Move Babel config into `package.json`; use cache (see CRA)
                         presets: [ 'react' ]
                     }
                 }

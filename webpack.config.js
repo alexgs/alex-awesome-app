@@ -6,10 +6,10 @@ function buildConfig() {
     const options = {
         extractCss: !devServer,
         nodeEnv: process.env[ 'NODE_ENV' ],
-        outputPath: path.resolve( __dirname, './dist' ),
+        outputPath: path.resolve( __dirname, './build' ),
         publicPath: ''
     };
-    return require( `./config/webpack.${configFile}.js` )( options )
+    return require( `./config/webpack.${configFile}.js` )( options );
 }
 
 module.exports = buildConfig;

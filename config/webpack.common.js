@@ -5,7 +5,7 @@ const path = require( 'path' );
 module.exports = function( options ) {
     return {
         entry: {
-            app: './src/index.jsx'
+            app: './src/index.js'
         },
 
         resolve: {
@@ -46,7 +46,7 @@ module.exports = function( options ) {
 
         plugins: [
             new HtmlWebpackPlugin( {
-                template: './src/index.html'
+                template: './public/index.html'
             } ),
 
             new ExtractTextPlugin( {

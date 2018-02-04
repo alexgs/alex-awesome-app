@@ -60,11 +60,7 @@ function getRules( options ) {
 }
 
 function getSassRule( options ) {
-    // TODO Work with `.sass` files
-    // test: [ /\.sass$/, /\.scss$/ ],
-    // test: /\.(sass|scss)$/,
-    // test: /\.sass$/,
-    const test = /\.scss$/;
+    const test = [ /\.sass$/, /\.scss$/ ];
 
     // Configurations for individual loaders
     const cssLoader = {

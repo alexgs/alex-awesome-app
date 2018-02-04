@@ -2,6 +2,7 @@
   <dictionary name="philgs">
     <words>
       <w>autoprefixer</w>
+      <w>bluegrey</w>
       <w>devtool</w>
       <w>flexbox</w>
       <w>postcss</w>

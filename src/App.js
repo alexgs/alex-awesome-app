@@ -1,5 +1,8 @@
+import _ from 'lodash';
 import React from 'react';
-import Greeting from './components/Greeting';
+import Greeting from './home/Greeting';
+import Header from './home/Header';
+import TaskList from './task-list/TaskList';
 import './stylesheets/app.sass';
 
 // TODO Make this into a simple "to do" app, based on [Scotch.io tutorial][1] ([source code][2]).
@@ -9,21 +12,58 @@ import './stylesheets/app.sass';
 // TODO Then make it into a more complex template with Redux and React Router
 // TODO Add some automated tests that will run the 3 different build configurations and make sure that each is working correctly.
 
+
+function getIncompleteCount( list ) {
+    return list
+        .filter( task => !task.completed )
+        .length;
+}
+
 class App extends React.PureComponent {
+    constructor() {
+        super();
+        this.state = {
+            tasks: [
+                {
+                    id: 0,
+                    title: 'Get some milk',
+                    completed: false
+                },
+                {
+                    id: 1,
+                    title: 'Pay the bills',
+                    completed: false
+                },
+                {
+                    id: 2,
+                    title: 'File the tax return',
+                    completed: false
+                },
+                {
+                    id: 3,
+                    title: 'Call the doctor',
+                    completed: false
+                }
+            ]
+        };
+        this.toggleComplete = this.toggleComplete.bind( this );
+    }
+
+    toggleComplete( taskId ) {
+        const newTaskList = _.cloneDeep( this.state.tasks );
+        const task = newTaskList[ taskId ];
+        task.completed = !task.completed;
+        newTaskList[ taskId ] = task;
+        this.setState( { tasks: newTaskList } );
+    }
+
     render() {
+        const incompleteCount = getIncompleteCount( this.state.tasks );
         return (
             <div>
-                <div>
-                    <h1>Phil's Awesome App</h1>
-                    <div>
-                        Adapted from <a href={ 'https://scotch.io/tutorials/create-a-simple-to-do-app-with-react' }>
-                            "Create a Simple To-Do App With React"
-                        </a> by <a href={ 'https://twitter.com/codebeast' }>Chris Nwamba</a>
-                    </div>
-                </div>
-                <div>
-                    <Greeting incompleteCount={ 4 } />
-                </div>
+                <Header />
+                <Greeting incompleteCount={ incompleteCount } />
+                <TaskList tasks={ this.state.tasks } toggleTaskStatus={ this.toggleComplete } />
             </div>
         );
     }

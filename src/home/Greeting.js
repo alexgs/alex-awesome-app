@@ -12,7 +12,9 @@ class Greeting extends React.PureComponent {
 
     render() {
         return (
-            <h2>Howdy! You have { this.props.incompleteCount } incomplete items.</h2>
+            <div>
+                <h2>Howdy! You have { this.props.incompleteCount } incomplete items.</h2>
+            </div>
         );
     }
 }

@@ -1,3 +1,4 @@
+const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const path = require( 'path' );
 
@@ -73,8 +74,8 @@ function getSassRule( options ) {
     const postCssLoader = {
         loader: require.resolve( 'postcss-loader' ),
         options: {
-            plugins: []
-            // plugins: [ require.resolve( 'autoprefixer') ]
+            ident: 'postcss',
+            plugins: () => [ autoprefixer( { flexbox: 'no-2009' } ) ]
         }
     };
     const sassLoader = {

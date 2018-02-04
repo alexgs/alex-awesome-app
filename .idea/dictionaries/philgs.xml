@@ -3,6 +3,7 @@
     <words>
       <w>autoprefixer</w>
       <w>devtool</w>
+      <w>flexbox</w>
       <w>postcss</w>
     </words>
   </dictionary>

@@ -1,43 +1,21 @@
-const ExtractTextPlugin = require( "extract-text-webpack-plugin" );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const path = require( 'path' );
+const utils = require( './utils' );
 
 module.exports = function( options ) {
     return {
         entry: {
-            app: './src/index.jsx'
+            app: './src/index.js'
         },
 
         resolve: {
-            extensions: [ '*', '.js', '.jsx' ]
+            // Resolve rules are adapted from "Create React App"
+            modules: [ 'node_modules' ],
+            extensions: [ '.web.js', '.js', '.json' ]
         },
 
         module: {
-            rules: [
-                /**
-                 * The "ExtractTextPlugin" doesn't work with HMR, and disabling it via its
-                 * `disable` option doesn't appear to work. I came up with this configuration
-                 * as a work-around.
-                 */
-                options.extractCss ? {
-                    test: /\.scss$/,
-                    use: ExtractTextPlugin.extract( {
-                        use: [
-                            { loader: 'css-loader' },
-                            { loader: 'sass-loader' }
-                        ]
-                    } )
-                } : { },
-
-                {
-                    test: /\.jsx?$/,
-                    exclude: /node_modules/,
-                    loader: 'babel-loader',
-                    query: {
-                        presets: [ 'react' ]
-                    }
-                }
-            ]
+            rules: utils.getRules( options )
         },
 
         output: {
@@ -46,12 +24,23 @@ module.exports = function( options ) {
 
         plugins: [
             new HtmlWebpackPlugin( {
-                template: './src/index.html'
+                template: './public/index.html'
             } ),
 
             new ExtractTextPlugin( {
-                filename: "[name].[contenthash].css",
+                filename: utils.names.css,
             } )
-        ]
+        ],
+
+        stats: {
+            children: false,
+            chunks: true,
+            chunkModules: false,
+            chunkOrigins: false,
+            modules: false,
+            timings: true,
+            version: true
+        }
+
     };
 };

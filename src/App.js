@@ -62,7 +62,7 @@ class App extends React.PureComponent {
     render() {
         const incompleteCount = getIncompleteCount( this.state.tasks );
         return (
-            <div>
+            <div className={ 'container' }>
                 <Header />
                 <Greeting incompleteCount={ incompleteCount } />
                 <TaskList tasks={ this.state.tasks } toggleTaskStatus={ this.toggleComplete } />

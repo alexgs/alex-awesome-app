@@ -1,22 +1,20 @@
 # Phil's Awesome App
 
-My "Awesome App" starter kit for Webpack 2 and React.
+My "Awesome App" starter kit for React apps.
 
-## What's Missing
+## Configuration
 
-1. React HMR appears to work without using the [`AppContainer`][3] component.
+After cloning or downloading this repo, you will need to configure the following:
 
-[3]: https://webpack.js.org/guides/hmr-react/#app-code
+:warning: **__Before running npm install...__** :warning:
 
-## Useful References
+- **Font Awesome**: See [the Node.js instructions][3].
 
-- [A Beginner’s Guide to Webpack 2 and Module Bundling][5] has some good examples of Sass bundling and URL resolving.
-
-[5]: https://www.sitepoint.com/beginners-guide-to-webpack-2-and-module-bundling/
+[3]: https://fontawesome.com/how-to-use/use-with-node-js#pro
 
 ## License
 
 The content of this repository is licensed under the [MIT license][1]. Please see the enclosed [license file][2] for specific terms.
 
 [1]: https://opensource.org/licenses/MIT
-[2]: https://github.com/philgs/phils-awesome-app/blob/master/LICENSE.md
+[2]: LICENSE.md

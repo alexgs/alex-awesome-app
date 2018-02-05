@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import Greeting from './home/Greeting';
 import Header from './home/Header';
 import TaskList from './task-list/TaskList';
+import './global/icons';
 import './stylesheets/app.sass';
 
 // TODO Make this into a simple "to do" app, based on [Scotch.io tutorial][1] ([source code][2]).

@@ -1,10 +1,9 @@
-$bluegrey: #2B3A42
+// Import local custom styles
+@import 'pre'
 
-pre
-  padding: 20px
-  background: $bluegrey
-  color: #dedede
-  text-shadow: 0 1px 1px rgba(#000, .5)
+// Reference: https://getbootstrap.com/docs/4.0/getting-started/webpack/#importing-precompiled-sass
+@import 'bootstrap-tweaks'
 
-div.flex-container
-  display: flex
+// To only import specific parts of Bootstrap, see [the "Theming" documentation][1]
+// [1]: https://getbootstrap.com/docs/4.0/getting-started/theming/#importing
+@import '~bootstrap/scss/bootstrap'

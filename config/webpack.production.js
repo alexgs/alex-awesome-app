@@ -16,6 +16,10 @@ module.exports = function( options ) {
         },
 
         plugins: [
+            new webpack.DefinePlugin( {
+                'process.env.NODE_ENV': JSON.stringify( 'production' )
+            } ),
+
             new webpack.optimize.CommonsChunkPlugin( {
                 /**
                  * Put all imports exist from the node_modules directory into

@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const ManifestPlugin = require('webpack-manifest-plugin');
 const utils = require( './utils' );
 
 module.exports = function( options ) {
@@ -29,7 +30,9 @@ module.exports = function( options ) {
 
             new ExtractTextPlugin( {
                 filename: utils.names.css,
-            } )
+            } ),
+
+            new ManifestPlugin(),
         ],
 
         stats: {

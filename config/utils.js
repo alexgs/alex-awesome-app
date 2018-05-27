@@ -65,7 +65,6 @@ function getSassRule( options ) {
     // Configurations for individual loaders
     const cssLoader = {
         loader: require.resolve( 'css-loader' ),
-        options: { importLoaders: 2 }
     };
     const postCssLoader = {
         loader: require.resolve( 'postcss-loader' ),

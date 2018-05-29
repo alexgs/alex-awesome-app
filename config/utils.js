@@ -35,7 +35,8 @@ function getJavaScriptRule( options ) {
         include: path.resolve( options.rootPath, './src' ),
         loader: require.resolve( 'babel-loader' ),
         options: {
-            cacheDirectory: true
+            cacheDirectory: true,
+            compact: true
         }
     };
 }
@@ -60,12 +61,11 @@ function getRules( options ) {
 }
 
 function getSassRule( options ) {
-    const test = [ /\.sass$/, /\.scss$/ ];
+    const test = [ /\.sass$/, /\.scss$/, /\.css$/ ];
 
     // Configurations for individual loaders
     const cssLoader = {
-        loader: require.resolve( 'css-loader' ),
-        options: { importLoaders: 2 }
+        loader: require.resolve( 'css-loader' )
     };
     const postCssLoader = {
         loader: require.resolve( 'postcss-loader' ),

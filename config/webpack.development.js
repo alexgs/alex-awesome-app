@@ -4,7 +4,10 @@ const commonConfig = require( './webpack.common.js' );
 
 module.exports = function( options ) {
     return webpackMerge( commonConfig( options ), {
-        devtool: 'cheap-module-source-map',         // Required for the React Dev Utils overlay
+        mode: 'development',
+
+        // devtool: 'cheap-module-source-map',         // Required for the React Dev Utils overlay
+        devtool: 'source-map',
 
         output: {
             filename: '[name].[hash:8].js',

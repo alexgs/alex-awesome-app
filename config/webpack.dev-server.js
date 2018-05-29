@@ -11,6 +11,7 @@ module.exports = function( options ) {
         devServer: {
             // clientLogLevel: 'warning',
             contentBase: options.outputPath,
+            historyApiFallback: true,
             hot: false,
             publicPath: options.publicPath,
             stats: {

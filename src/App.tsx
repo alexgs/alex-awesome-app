@@ -1,15 +1,29 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
 
-const App = () => (
-    <div>
-      <h1>Hello happy world!</ h1>
-    </div>
-  );
+// import './global/icons';
+import './stylesheets/app.sass';
 
-(async () => {
-  console.log('You have async support if you read this instead of "ReferenceError: '
-    + 'regeneratorRuntime is not defined" error.');
-})();
+// TODO Add Bootstrap and FontAwesome
+// TODO Add production build configuration
+class App extends React.Component {
+  render() {
+    return (
+      <main role="main" className="container py-4">
+        <div className="starter-template">
+          <h1>Bootstrap grid examples</h1>
+          <p className="lead">
+            Basic grid layouts to get you familiar with building within the Bootstrap grid system.
+          </p>
+          <div className="row mb-3">
+            <div className="col-4">.col-4</div>
+            <div className="col-4">.col-4</div>
+            <div className="col-4">.col-4</div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+}
 
 export default hot(App);

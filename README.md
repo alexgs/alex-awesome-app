@@ -1,5 +1,7 @@
 # Phil's Awesome App
 
+:warning: As of 2019-01-03, the `npm start` script does not work due to recent package upgrades :warning:
+
 My "Awesome App" starter kit for React apps.
 
 ## Configuration
